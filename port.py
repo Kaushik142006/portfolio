@@ -27,13 +27,6 @@ SOCIAL_LINKS = {
 
 PROJECTS = [
     {
-        "title": "CargoGuard AI Risk System",
-        "description": "An advanced AI-driven risk assessment system designed to enhance cargo security by predicting potential threats and vulnerabilities in logistics chains.",
-        "url": "https://github.com/Kaushik142006/CargoGuard-AI-risk-system-",
-        "icon": "🛡️",
-        "tags": ["AI Security", "Risk Assessment", "Predictive Modeling", "Logistics"]
-    },
-    {
         "title": "RFP Insight Engine",
         "description": "An intelligent system that analyzes Request for Proposal documents using NLP and machine learning to extract key insights, requirements, and actionable information.",
         "url": "https://github.com/Kaushik142006/RFP-Insight-Engine",
@@ -374,7 +367,7 @@ def experience_section():
             <p style="color: #a0a0c0; font-size: 1.1rem;">Aspiring Data Scientist & ML Engineer</p>
             <p style="color: #8888a8;">Building Real-World ML Projects</p>
             <div style="display: flex; align-items: center; gap: 10px; margin-top: 15px;">
-                <span style="color: #f093fb;">🚀</span><p style="color: #c0c0d8; margin: 0;">5+ Projects Completed</p>
+                <span style="color: #f093fb;">🚀</span><p style="color: #c0c0d8; margin: 0;">4+ Projects Completed</p>
             </div>
         </div>
         """, unsafe_allow_html=True)
