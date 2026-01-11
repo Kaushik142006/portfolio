@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_lottie import st_lottie
 import requests
+import streamlit.components.v1 as components
 
 # --- PAGE CONFIGURATION ---
 st.set_page_config(
@@ -14,11 +15,15 @@ st.set_page_config(
 NAME = "Kaushik Sathyanarayana"
 ROLE = "Data Scientist & ML Engineer"
 DESCRIPTION = """
-I am a passionate <span class="intro-highlight">Data Scientist</span> and 
-<span class="intro-highlight">Machine Learning enthusiast</span> currently pursuing my studies 
-while building real-world AI solutions. I transform complex data into actionable insights 
-and develop predictive models that drive innovation.
+I am a <span class="intro-highlight">B.E. student in Robotics and Artificial Intelligence</span> 
+at <span class="intro-highlight">Dayananda Sagar College of Engineering</span>. 
+I am passionate about <span class="intro-highlight">Data Science</span> and 
+<span class="intro-highlight">Machine Learning</span>, and I actively build projects 
+to strengthen my skills in data analysis, machine learning, and intelligent systems 
+while exploring areas such as deep learning, NLP, and robotics.
 """
+
+
 
 SOCIAL_LINKS = {
     "LinkedIn": "https://www.linkedin.com/in/kaushik-sathyanarayana-6ab49432b/",
@@ -332,21 +337,72 @@ def header_section(lottie_url):
 def about_section():
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
     st.markdown('<h2 class="section-title">About Me</h2>', unsafe_allow_html=True)
-    
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        st.markdown("""
+
+    # 1. Inject the CSS separately to avoid markdown rendering issues
+    st.markdown("""
+        <style>
+        .about-card p {
+            margin: 0 0 18px 0 !important;
+            line-height: 1.9 !important;
+            text-align: center;
+            color: #c0c0d8; /* Ensures text color is applied */
+        }
+        .about-card {
+            max-width: 1100px;
+            width: 95%;
+            padding: 45px;
+            font-size: 1.15rem;
+            background: rgba(255, 255, 255, 0.05); /* Optional: adds a subtle card backing */
+            border-radius: 20px;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
+    # 2. Use a clean HTML structure for the content
+    about_html = """
+    <div style="display: flex; justify-content: center; width: 100%;">
         <div class="about-card">
-            <p style="color: #c0c0d8; font-size: 1.1rem; line-height: 2; text-align: center;">
-                I am a passionate learner with a solid foundation in <span class="intro-highlight">Machine Learning</span>, 
-                including both supervised and unsupervised learning techniques. 
-                <br><br>
-                I am now expanding my skills into <span class="intro-highlight">Deep Learning</span>, 
-                <span class="intro-highlight">NLP</span>, and <span class="intro-highlight">Agentic AI</span>.
-                I also have a growing interest in <span class="intro-highlight">Robotics</span>.
+            <p>
+                I am a passionate and dedicated student with strong hands-on knowledge in
+                <span class="intro-highlight">Data Science</span> and
+                <span class="intro-highlight">Machine Learning</span>. I have worked with both
+                <span class="intro-highlight">supervised</span> and
+                <span class="intro-highlight">unsupervised learning</span> techniques, and I enjoy
+                building and evaluating machine learning models to solve real-world problems.
+            </p>
+            <p>
+                I have a strong interest in working with data, understanding patterns, and
+                extracting meaningful insights from complex datasets. I enjoy applying
+                data-driven approaches to practical use cases by transforming raw data into
+                actionable and impactful solutions.
+            </p>
+            <p>
+                I also have practical knowledge of
+                <span class="intro-highlight">Natural Language Processing (NLP)</span>, where I work
+                with text preprocessing, feature extraction, and basic language understanding
+                techniques. Along with this, I have a strong foundation in
+                <span class="intro-highlight">Python</span>, which I use extensively for data analysis,
+                machine learning, and end-to-end project development.
+            </p>
+            <p>
+                Currently, I am focused on expanding my knowledge in
+                <span class="intro-highlight">Deep Learning</span>, while continuously strengthening
+                my core machine learning fundamentals. I am actively learning, building projects,
+                and exploring advanced AI concepts, with a growing interest in combining
+                artificial intelligence with real-world systems such as
+                <span class="intro-highlight">Robotics</span>.
             </p>
         </div>
-        """, unsafe_allow_html=True)
+    </div>
+    """
+    
+    st.markdown(about_html, unsafe_allow_html=True)
+
+
+
+
+
+
 
 def experience_section():
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
@@ -443,7 +499,7 @@ def footer_section():
     <br><br>
     <footer class="custom-footer">
         <p style="font-size: 1rem;">Made with ❤️ using Streamlit</p>
-        <p style="font-size: 0.85rem; margin-top: 10px;">© 2025 Kaushik Sathyanarayana. All Rights Reserved</p>
+        <p style="font-size: 0.85rem; margin-top: 10px;">© 2026 Kaushik Sathyanarayana. All Rights Reserved</p>
     </footer>
     """, unsafe_allow_html=True)
 
