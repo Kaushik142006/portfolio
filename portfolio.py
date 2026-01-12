@@ -17,12 +17,11 @@ ROLE = "Data Scientist & ML Engineer"
 DESCRIPTION = """
 I am a <span class="intro-highlight">B.E. student in Robotics and Artificial Intelligence</span> 
 at <span class="intro-highlight">Dayananda Sagar College of Engineering</span>. 
-I am passionate about <span class="intro-highlight">Data Science</span> and 
-<span class="intro-highlight">Machine Learning</span>, and I actively build projects 
+I am passionate about <span class="intro-highlight">Data Science</span>, 
+<span class="intro-highlight">Natural Language Processing </span> and <span class="intro-highlight">Machine Learning</span>, and I actively build projects 
 to strengthen my skills in data analysis, machine learning, and intelligent systems 
 while exploring areas such as deep learning, NLP, and robotics.
 """
-
 
 
 SOCIAL_LINKS = {
@@ -43,7 +42,7 @@ PROJECTS = [
         "description": "An intelligent system that analyzes Request for Proposal documents using NLP and machine learning to extract key insights, requirements, and actionable information.",
         "url": "https://github.com/Kaushik142006/RFP-Insight-Engine",
         "icon": "📄",
-        "tags": ["NLP", "Document Analysis", "Python", "ML"]
+        "tags": ["Document Analysis", "Python", "ML","Text Analytics"]
     },
     {
         "title": "Student Performance Analyzer",
@@ -92,74 +91,6 @@ def load_lottie_url(url: str):
         print(f"Error loading Lottie: {e}")
         return None
 
-# --- CONTACT FORM MODAL ---
-@st.dialog("Contact Me")
-def contact_form():
-    # Specific Styling for the Modal
-    st.markdown("""
-    <style>
-    /* Force the modal content background to white */
-    div[role="dialog"] section {
-        background-color: #ffffff !important;
-    }
-    div[role="dialog"] {
-        color: #000000 !important;
-    }
-    
-    /* Make Labels Dark Black */
-    div[data-testid="stTextInput"] label, div[data-testid="stTextArea"] label {
-        color: #000000 !important;
-        font-weight: 600 !important;
-    }
-    
-    /* Make Input Fields Dark with White Text */
-    div[data-testid="stTextInput"] input, div[data-testid="stTextArea"] textarea {
-        background-color: #252540 !important; /* Dark Blue/Black */
-        color: #ffffff !important; /* White Text */
-        border: 1px solid #444466 !important;
-    }
-    
-    /* Input placeholder color styling */
-    div[data-testid="stTextInput"] input::placeholder, div[data-testid="stTextArea"] textarea::placeholder {
-        color: #a0a0c0 !important;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
-    with st.form("contact_form"):
-        name = st.text_input("Name", placeholder="Your name")
-        email = st.text_input("Email", placeholder="Your email")
-        subject = st.text_input("Subject", placeholder="Subject of your email")
-        message = st.text_area("Message", placeholder="Your message")
-        
-        submit_button = st.form_submit_button("Send Message", type="primary", use_container_width=True)
-
-        if submit_button:
-            if not name or not email or not message:
-                st.error("Please fill in all required fields.")
-            else:
-                # --- EMAIL SENDING LOGIC (Using FormSubmit.co) ---
-                form_url = "https://formsubmit.co/kaushiksathya2006@gmail.com"
-                
-                # Hidden parameters to configure FormSubmit behavior
-                data = {
-                    "name": name,
-                    "email": email,
-                    "subject": subject if subject else "New Message from Portfolio",
-                    "message": message,
-                    "_captcha": "false",
-                    "_template": "table"
-                }
-                
-                try:
-                    response = requests.post(form_url, data=data)
-                    if response.status_code == 200:
-                        st.success("Message sent successfully! 🚀 Check your inbox.")
-                    else:
-                        st.error("There was an error sending your message. Please try again.")
-                except Exception as e:
-                    st.error(f"Error: {e}")
-
 # --- CSS STYLING ---
 def load_css():
     """Injects the CSS styles."""
@@ -170,21 +101,329 @@ def load_css():
     * { font-family: 'Poppins', sans-serif; }
     .stApp { background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #0f0f23 100%); }
     
-    /* Buttons in Streamlit default styling override for 'Email Me' */
-    div.stButton > button {
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        color: white;
-        border: none;
-        padding: 10px 25px;
-        border-radius: 50px;
-        transition: all 0.3s ease;
-        font-weight: 600;
+    /* ========================================
+       NAVIGATION BAR (NEW FEATURE)
+    ======================================== */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(15, 15, 35, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+        padding: 15px 0;
+        z-index: 9999;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        animation: slideDown 0.5s ease-out;
     }
-    div.stButton > button:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
-        border: none;
+    
+    .navbar-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 40px;
+    }
+    
+    .navbar-links {
+        display: flex;
+        gap: 35px;
+        align-items: center;
+    }
+    
+    /* ENHANCED: Improved navigation link hover states with glow */
+    .nav-link {
+        color: #c0c0d8;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        padding: 8px 16px;
+        border-radius: 25px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        cursor: pointer;
+    }
+    
+    .nav-link:hover {
+        color: #ffffff;
+        background: rgba(102, 126, 234, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+    
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+        width: 70%;
+        height: 2px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        box-shadow: 0 0 8px rgba(102, 126, 234, 0.6);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .nav-link:hover::after {
+        transform: translateX(-50%) scaleX(1);
+    }
+    
+    @keyframes slideDown {
+        from { transform: translateY(-100%); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    
+    /* FIXED: Reduced padding to decrease gap below navbar */
+    .main-content {
+        padding-top: 70px;
+    }
+    
+    /* FIXED: Remove white background from Lottie animation container */
+    div[data-testid="stImage"],
+    div[data-testid="stLottie"],
+    .stLottie,
+    iframe[title="streamlit_lottie.streamlit_lottie"] {
+        background-color: transparent !important;
+        background: transparent !important;
+    }
+    
+    /* ENHANCED: Add glow effect around illustration area */
+    .illustration-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        padding: 20px;
+    }
+    
+    .illustration-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 120%;
+        height: 120%;
+        background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: pulseGlowIllustration 4s ease-in-out infinite;
+        z-index: -1;
+    }
+    
+    .illustration-wrapper::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 110%;
+        height: 110%;
+        border: 2px solid transparent;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3), rgba(240, 147, 251, 0.3));
+        background-clip: padding-box;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        padding: 2px;
+        animation: rotateBorder 8s linear infinite;
+        z-index: -1;
+    }
+    
+    @keyframes pulseGlowIllustration {
+        0%, 100% { 
+            opacity: 0.6;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        50% { 
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+    }
+    
+    @keyframes rotateBorder {
+        0% { filter: hue-rotate(0deg); }
+        100% { filter: hue-rotate(360deg); }
+    }
+    
+    /* ========================================
+       IMPROVED SOCIAL BUTTONS (ENHANCED)
+    ======================================== */
+    .social-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        margin: 10px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* LinkedIn - Official Brand Color */
+    .linkedin-btn {
+        background: linear-gradient(135deg, #0077B5, #00A0DC);
         color: white;
+    }
+    
+    .linkedin-btn:hover {
+        background: linear-gradient(135deg, #005582, #0077B5);
+        transform: translateY(-8px) scale(1.08);
+        box-shadow: 0 12px 35px rgba(0, 119, 181, 0.5), 0 0 30px rgba(0, 160, 220, 0.3);
+        filter: brightness(1.1);
+    }
+    
+    .linkedin-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+    
+    .linkedin-btn:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+    
+    /* GitHub - Official Brand Color */
+    .github-btn {
+        background: linear-gradient(135deg, #24292e, #2f363d);
+        color: white;
+    }
+    
+    .github-btn:hover {
+        background: linear-gradient(135deg, #1a1e22, #24292e);
+        transform: translateY(-8px) scale(1.08);
+        box-shadow: 0 12px 35px rgba(36, 41, 46, 0.6), 0 0 30px rgba(47, 54, 61, 0.4);
+        filter: brightness(1.2);
+    }
+    
+    .github-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+    
+    .github-btn:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+    
+    /* Social button text should stay white and visible */
+    .social-btn span {
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* ========================================
+       CONTACT SECTION (NEW INLINE FORM)
+    ======================================== */
+    .contact-section {
+        max-width: 800px;
+        margin: 60px auto;
+        background: linear-gradient(145deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        border: 2px solid rgba(102, 126, 234, 0.3);
+        border-radius: 30px;
+        padding: 50px 45px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: fadeInUp 1s ease-out, pulseGlow 4s ease-in-out infinite;
+    }
+    
+    .contact-title {
+        font-size: 2rem;
+        font-weight: 600;
+        text-align: center;
+        color: #ffffff;
+        margin-bottom: 15px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .contact-subtitle {
+        text-align: center;
+        color: #a0a0c0;
+        font-size: 1.05rem;
+        margin-bottom: 35px;
+    }
+    
+    /* Streamlit Form Input Styling for Contact Section */
+    div[data-testid="stForm"] {
+        background: transparent;
+        border: none;
+    }
+    
+    div[data-testid="stForm"] label {
+        color: #e0e0f0 !important;
+        font-weight: 600 !important;
+        font-size: 1rem !important;
+        margin-bottom: 8px !important;
+    }
+    
+    div[data-testid="stForm"] input,
+    div[data-testid="stForm"] textarea {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        color: #ffffff !important;
+        border: 2px solid rgba(102, 126, 234, 0.3) !important;
+        border-radius: 12px !important;
+        padding: 14px !important;
+        font-size: 0.95rem !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    div[data-testid="stForm"] input:focus,
+    div[data-testid="stForm"] textarea:focus {
+        border-color: rgba(102, 126, 234, 0.8) !important;
+        box-shadow: 0 0 20px rgba(102, 126, 234, 0.3) !important;
+        background-color: rgba(255, 255, 255, 0.08) !important;
+    }
+    
+    div[data-testid="stForm"] input::placeholder,
+    div[data-testid="stForm"] textarea::placeholder {
+        color: #8888a8 !important;
+    }
+    
+    /* Contact Form Submit Button */
+    div[data-testid="stForm"] button[kind="primaryFormSubmit"] {
+        background: linear-gradient(135deg, #667eea, #764ba2) !important;
+        color: white !important;
+        border: none !important;
+        padding: 14px 35px !important;
+        border-radius: 50px !important;
+        font-weight: 600 !important;
+        font-size: 1rem !important;
+        transition: all 0.4s ease !important;
+        margin-top: 10px !important;
+        width: 100% !important;
+    }
+    
+    div[data-testid="stForm"] button[kind="primaryFormSubmit"]:hover {
+        transform: translateY(-4px) !important;
+        box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4) !important;
+        background: linear-gradient(135deg, #764ba2, #667eea) !important;
     }
 
     /* Animations */
@@ -230,15 +469,7 @@ def load_css():
     .project-title { font-size: 1.3rem; font-weight: 600; color: #ffffff; margin-bottom: 15px; background: linear-gradient(90deg, #4facfe, #00f2fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .project-desc { font-size: 0.95rem; color: #a0a0c0; line-height: 1.7; margin-bottom: 20px; }
     
-    /* Buttons */
-    .social-btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.4s; margin: 10px; position: relative; overflow: hidden; }
-    .social-btn:hover { transform: translateY(-8px) scale(1.05); }
-    .linkedin-btn { background: linear-gradient(135deg, #0077b5, #00a0dc); color: white; }
-    .github-btn { background: linear-gradient(135deg, #333, #555); color: white; }
-    .email-btn { background: linear-gradient(135deg, #ea4335, #ff6b6b); color: white; }
-    .resume-btn { background: linear-gradient(135deg, #00c853, #69f0ae); color: white; }
-    
-    /* UPDATED: Added !important to FORCE WHITE TEXT */
+    /* Project Links - Bright White Text */
     a.project-link { 
         display: inline-flex; 
         align-items: center; 
@@ -247,21 +478,20 @@ def load_css():
         background: linear-gradient(135deg, rgba(79, 172, 254, 0.2), rgba(0, 242, 254, 0.2)); 
         border: 1px solid rgba(79, 172, 254, 0.4); 
         border-radius: 50px; 
-        color: #ffffff !important; /* Forces Bright White Text */
+        color: #ffffff !important;
         text-decoration: none !important; 
         font-weight: 500; 
         font-size: 0.9rem; 
         transition: all 0.3s ease; 
     }
     
-    /* Visited links also stay white */
     a.project-link:visited {
         color: #ffffff !important;
     }
 
     a.project-link:hover { 
         background: linear-gradient(135deg, #4facfe, #00f2fe); 
-        color: #0f0f23 !important; /* Dark Text on Hover */
+        color: #0f0f23 !important;
         transform: scale(1.05); 
     }
     
@@ -279,12 +509,26 @@ def load_css():
     .shape-5 { width: 80px; height: 80px; background: linear-gradient(135deg, #a8edea, #fed6e3); bottom: 30%; right: 25%; animation: morphing 6s ease-in-out infinite, particleFloat 10s ease-in-out infinite; animation-delay: 3s; }
     @keyframes morphing { 0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; } 50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; } 75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; } }
     
+    /* About card specific styling */
+    .about-card p {
+        margin: 0 0 18px 0 !important;
+        line-height: 1.9 !important;
+        text-align: center;
+        color: #c0c0d8;
+    }
+    .about-card {
+        max-width: 1100px;
+        width: 95%;
+        padding: 45px;
+        font-size: 1.15rem;
+    }
+    
     /* ------- HIDE STREAMLIT BRANDING ------- */
     #MainMenu {visibility: hidden;}
     header {visibility: hidden;}
     footer {visibility: hidden;}
     
-    /* Specific override for YOUR custom footer */
+    /* Specific override for custom footer */
     footer.custom-footer {
         visibility: visible;
         display: block;
@@ -292,6 +536,11 @@ def load_css():
         padding: 40px; 
         color: #6666a8; 
         animation: fadeInUp 1s ease-out;
+    }
+    
+    /* Smooth scrolling */
+    html {
+        scroll-behavior: smooth;
     }
     </style>
     
@@ -304,14 +553,34 @@ def load_css():
     </div>
     """, unsafe_allow_html=True)
 
+# --- NAVIGATION BAR (NEW FEATURE) ---
+def navigation_bar():
+    """Renders the sticky navigation bar with smooth scroll functionality."""
+    st.markdown("""
+    <div class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
 # --- UI SECTIONS ---
 def header_section(lottie_url):
-    st.markdown("<br>", unsafe_allow_html=True)
+    """Header section with hero content and Lottie animation."""
+    # Add anchor for navigation
+    st.markdown('<div id="home"></div>', unsafe_allow_html=True)
+    # FIXED: Removed extra <br> to reduce gap below navbar
     col1, col2 = st.columns([1.2, 1])
 
     with col1:
         st.markdown(f"""
-        <div style="padding-top: 50px;">
+        <div style="padding-top: 20px;">
             <p style="color: #667eea; font-size: 1.2rem; animation: fadeInUp 0.8s ease-out; margin-bottom: 5px;">👋 Hello, I'm</p>
             <h1 class="hero-title">{NAME}</h1>
             <p class="hero-subtitle">{ROLE}</p>
@@ -319,46 +588,35 @@ def header_section(lottie_url):
         </div>
         """, unsafe_allow_html=True)
         
-        # Social Buttons
+        # ENHANCED Social Buttons with new hover effects and brand colors
         st.markdown(f"""
         <div style="margin-top: 30px;">
-            <a href="{SOCIAL_LINKS['LinkedIn']}" target="_blank" class="social-btn linkedin-btn">LinkedIn</a>
-            <a href="{SOCIAL_LINKS['GitHub']}" target="_blank" class="social-btn github-btn">GitHub</a>
+            <a href="{SOCIAL_LINKS['LinkedIn']}" target="_blank" class="social-btn linkedin-btn">
+                <span>💼 LinkedIn</span>
+            </a>
+            <a href="{SOCIAL_LINKS['GitHub']}" target="_blank" class="social-btn github-btn">
+                <span>💻 GitHub</span>
+            </a>
         </div>
         """, unsafe_allow_html=True)
 
     with col2:
+        # ENHANCED: Wrap Lottie animation in illustration wrapper for glow effect
+        st.markdown('<div class="illustration-wrapper">', unsafe_allow_html=True)
         lottie_json = load_lottie_url(lottie_url)
         if lottie_json:
             st_lottie(lottie_json, height=400, key="coding")
         else:
             st.markdown("""<div style="height: 400px; display: flex; align-items: center; justify-content: center; font-size: 8rem;">👨‍💻</div>""", unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
 
 def about_section():
+    """About section with personal introduction."""
+    # Add anchor for navigation
+    st.markdown('<div id="about"></div>', unsafe_allow_html=True)
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
     st.markdown('<h2 class="section-title">About Me</h2>', unsafe_allow_html=True)
 
-    # 1. Inject the CSS separately to avoid markdown rendering issues
-    st.markdown("""
-        <style>
-        .about-card p {
-            margin: 0 0 18px 0 !important;
-            line-height: 1.9 !important;
-            text-align: center;
-            color: #c0c0d8; /* Ensures text color is applied */
-        }
-        .about-card {
-            max-width: 1100px;
-            width: 95%;
-            padding: 45px;
-            font-size: 1.15rem;
-            background: rgba(255, 255, 255, 0.05); /* Optional: adds a subtle card backing */
-            border-radius: 20px;
-        }
-        </style>
-    """, unsafe_allow_html=True)
-
-    # 2. Use a clean HTML structure for the content
     about_html = """
     <div style="display: flex; justify-content: center; width: 100%;">
         <div class="about-card">
@@ -398,13 +656,8 @@ def about_section():
     
     st.markdown(about_html, unsafe_allow_html=True)
 
-
-
-
-
-
-
 def experience_section():
+    """Education and Experience section."""
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
     st.markdown('<h2 class="section-title">Education & Experience</h2>', unsafe_allow_html=True)
     
@@ -436,6 +689,9 @@ def experience_section():
         """, unsafe_allow_html=True)
 
 def projects_section():
+    """Featured projects section."""
+    # Add anchor for navigation
+    st.markdown('<div id="projects"></div>', unsafe_allow_html=True)
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
     st.markdown('<h2 class="section-title">Featured Projects</h2>', unsafe_allow_html=True)
     
@@ -457,6 +713,9 @@ def projects_section():
             """, unsafe_allow_html=True)
 
 def skills_section():
+    """Skills showcase section."""
+    # Add anchor for navigation
+    st.markdown('<div id="skills"></div>', unsafe_allow_html=True)
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
     st.markdown('<h2 class="section-title">My Skills</h2>', unsafe_allow_html=True)
     
@@ -472,29 +731,61 @@ def skills_section():
             <br>
             """, unsafe_allow_html=True)
 
-def footer_section():
+def contact_section():
+    """NEW: Direct contact form section (replaces modal)."""
+    # Add anchor for navigation
+    st.markdown('<div id="contact"></div>', unsafe_allow_html=True)
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
-    st.markdown('<h2 class="section-title">Let\'s Connect</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-title">Get In Touch</h2>', unsafe_allow_html=True)
     
-    # FIXED: Added spacing to prevent the section-title underline from overlapping the text below
-    st.markdown("<br>", unsafe_allow_html=True)
+    # Contact form in a styled container
+    st.markdown("""
+    <div class="contact-section">
+        <h3 class="contact-title">📬 Contact Me</h3>
+        <p class="contact-subtitle">Have a question or want to work together? Send me a message!</p>
+    </div>
+    """, unsafe_allow_html=True)
     
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        st.markdown(f"""
-        <div style="text-align: center; position: relative; z-index: 2;">
-            <p style="color: #a0a0c0; font-size: 1.2rem; margin-bottom: 30px; text-decoration: none;">
-                I'm always open to discussing new projects and creative ideas.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
+    # Create the form
+    with st.form("contact_form", clear_on_submit=True):
+        col1, col2 = st.columns(2)
+        with col1:
+            name = st.text_input("Name *", placeholder="Your name")
+        with col2:
+            email = st.text_input("Email *", placeholder="your.email@example.com")
         
-        b_col1, b_col2, b_col3 = st.columns([1, 2, 1])
-        with b_col2:
-            if st.button("✉️ Email Me", use_container_width=True):
-                contact_form()
+        subject = st.text_input("Subject", placeholder="What's this about?")
+        message = st.text_area("Message *", placeholder="Your message here...", height=150)
+        
+        submit_button = st.form_submit_button("🚀 Send Message", use_container_width=True)
 
-    # FIXED: Added 'class="custom-footer"' so the CSS override works and shows the copyright text
+        if submit_button:
+            if not name or not email or not message:
+                st.error("⚠️ Please fill in all required fields (Name, Email, and Message).")
+            else:
+                # Email sending logic using FormSubmit.co
+                form_url = "https://formsubmit.co/kaushiksathya2006@gmail.com"
+                
+                data = {
+                    "name": name,
+                    "email": email,
+                    "subject": subject if subject else "New Message from Portfolio",
+                    "message": message,
+                    "_captcha": "false",
+                    "_template": "table"
+                }
+                
+                try:
+                    response = requests.post(form_url, data=data)
+                    if response.status_code == 200:
+                        st.success("✅ Message sent successfully! I'll get back to you soon. 🚀")
+                    else:
+                        st.error("❌ There was an error sending your message. Please try again.")
+                except Exception as e:
+                    st.error(f"❌ Error: {e}")
+
+def footer_section():
+    """Footer section with copyright information."""
     st.markdown("""
     <br><br>
     <footer class="custom-footer">
@@ -505,10 +796,22 @@ def footer_section():
 
 # --- MAIN APP ---
 if __name__ == "__main__":
+    # Render navigation bar first
+    navigation_bar()
+    
+    # Add main-content wrapper to prevent navbar overlap
+    st.markdown('<div class="main-content">', unsafe_allow_html=True)
+    
+    # Load CSS
     load_css()
+    
+    # Render all sections
     header_section("https://assets5.lottiefiles.com/packages/lf20_fcfjwiyb.json")
     about_section()
     experience_section()
     projects_section()
     skills_section()
+    contact_section()  # NEW: Direct contact form instead of modal
     footer_section()
+    
+    st.markdown('</div>', unsafe_allow_html=True)
