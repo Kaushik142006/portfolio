@@ -52,11 +52,19 @@ PROJECTS = [
         "tags": ["Predictive Analytics", "Education", "Scikit-learn", "Data Analysis"]
     },
     {
+        "title":"News Detector AI",
+        "description":"An NLP-based system that classifies news articles as real or fake using machine learning techniques.",
+        "url":"",
+        "icon":"📰",
+        "tags":["NLP", "Text Classification", "ML"]
+
+    },
+    {
         "title": "Fire Weather Prediction",
         "description": "A predictive model that forecasts fire weather conditions using meteorological data and machine learning algorithms to help prevent wildfire risks.",
         "url": "https://github.com/Kaushik142006/fire-weather-prediction",
         "icon": "🔥",
-        "tags": ["Weather Prediction", "Random Forest", "Data Science", "Safety"]
+        "tags": ["Weather Prediction", "Random Forest", "Data Science", "Safety", "ML"]
     },
     {
         "title": "Travel Package Purchase Prediction",
@@ -538,6 +546,207 @@ def load_css():
         animation: fadeInUp 1s ease-out;
     }
     
+    
+    /* ========================================
+       CONTACT FORM INPUT FIX - BLACK TEXT ON LIGHT BACKGROUND
+    ======================================== */
+    /* Text inputs and textarea - Pure black text, light background */
+    div[data-testid="stForm"] input[type="text"],
+    div[data-testid="stForm"] input[type="email"],
+    div[data-testid="stForm"] textarea {
+        background-color: #f5f5f5 !important;
+        color: #000000 !important;
+        caret-color: #000000 !important;
+        border: 2px solid #d0d0d0 !important;
+        border-radius: 8px !important;
+        padding: 12px !important;
+        font-size: 0.95rem !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    /* Placeholder text - Light gray */
+    div[data-testid="stForm"] input::placeholder,
+    div[data-testid="stForm"] textarea::placeholder {
+        color: #999999 !important;
+        opacity: 1 !important;
+    }
+    
+    /* Focus state - Keep black text, add border glow */
+    div[data-testid="stForm"] input:focus,
+    div[data-testid="stForm"] textarea:focus {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        caret-color: #000000 !important;
+        border-color: #667eea !important;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2) !important;
+        outline: none !important;
+    }
+    
+    /* Labels - Keep white for dark background */
+    div[data-testid="stForm"] label {
+        color: #ffffff !important;
+        font-weight: 600 !important;
+        margin-bottom: 6px !important;
+    }
+    
+    /* ========================================
+       RESPONSIVE DESIGN (MOBILE & TABLET)
+    ======================================== */
+    
+    /* Tablet & Small Desktop (1024px and below) */
+    @media (max-width: 1024px) {
+        .navbar-content {
+            padding: 0 20px;
+        }
+        
+        .navbar-links {
+            gap: 20px;
+        }
+        
+        .hero-title {
+            font-size: 2.8rem;
+        }
+        
+        .illustration-wrapper {
+            margin-top: 50px;
+        }
+    }
+    
+    /* Mobile Devices (768px and below) */
+    @media (max-width: 768px) {
+        /* Navigation */
+        .navbar {
+            padding: 10px 0;
+            background: rgba(15, 15, 35, 0.98); /* Less transparent on mobile */
+        }
+        
+        .navbar-content {
+            flex-direction: column;
+            gap: 15px;
+            padding: 0 10px;
+        }
+        
+        .navbar-links {
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .nav-link {
+            font-size: 0.85rem;
+            padding: 6px 12px;
+        }
+        
+        /* Typography Scaling */
+        .hero-title {
+            font-size: 2.2rem;
+            text-align: center;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            text-align: center;
+        }
+        
+        .hero-description {
+            font-size: 1rem;
+            text-align: center;
+            margin: 0 auto;
+        }
+        
+        .punch-line {
+            text-align: center;
+            font-size: 1rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+        }
+        
+        /* Layout Adjustments */
+        .main-content {
+            padding-top: 120px; /* More space for stacked navbar */
+        }
+        
+        /* Cards */
+        .why-hire-grid {
+            grid-template-columns: 1fr; /* Stack hire items */
+        }
+        
+        .edu-card, .exp-card, .about-card, .project-card, .contact-section {
+            padding: 25px;
+        }
+        
+        .skill-card {
+            height: 120px; /* Smaller skill cards */
+        }
+        
+        .skill-icon {
+            font-size: 2rem;
+        }
+        
+        /* Tech Cloud */
+        .tech-cloud {
+            padding: 20px 10px;
+            gap: 15px;
+        }
+        
+        .tech-cloud-item {
+            padding: 10px 15px;
+        }
+        
+        /* Social Buttons */
+        .social-btn {
+            padding: 12px 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Center Social Buttons Container */
+        div:has(.social-btn) {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Illustration */
+        .illustration-wrapper {
+            margin-top: 30px;
+            transform: scale(0.9);
+        }
+        
+        /* Footer Quote */
+        .footer-quote {
+            font-size: 1.1rem;
+            margin: 40px 0 20px 0;
+        }
+    }
+    
+    /* Small Mobile (480px and below) */
+    @media (max-width: 480px) {
+        .hero-title {
+            font-size: 1.8rem;
+        }
+        
+        .nav-link {
+            font-size: 0.75rem;
+            padding: 5px 10px;
+        }
+        
+        .project-card {
+            padding: 20px;
+        }
+        
+        .social-btn {
+            width: 100%; /* Full width buttons on very small screens */
+            justify-content: center;
+            margin: 5px 0;
+        }
+        
+        .navbar-links {
+            gap: 5px;
+        }
+    }
+
     /* Smooth scrolling */
     html {
         scroll-behavior: smooth;
@@ -796,14 +1005,14 @@ def footer_section():
 
 # --- MAIN APP ---
 if __name__ == "__main__":
+    # Load CSS first ensuring it is applied before any UI element
+    load_css()
+
     # Render navigation bar first
     navigation_bar()
     
     # Add main-content wrapper to prevent navbar overlap
     st.markdown('<div class="main-content">', unsafe_allow_html=True)
-    
-    # Load CSS
-    load_css()
     
     # Render all sections
     header_section("https://assets5.lottiefiles.com/packages/lf20_fcfjwiyb.json")
