@@ -1007,7 +1007,20 @@ def contact_section():
     
     # Create the form
     contact_form = """
-<form action="https://formsubmit.co/kaushikcoding14@gmail.com" method="POST">
+<script>
+function validateForm() {
+    var name = document.getElementsByName('name')[0].value;
+    var email = document.getElementsByName('email')[0].value;
+    var message = document.getElementsByName('message')[0].value;
+    if (name == "" || email == "" || message == "") {
+        alert("Please fill out everything");
+        return false;
+    }
+    alert("Message is sent and you will get the response as soon as possible");
+    return true;
+}
+</script>
+<form action="https://formsubmit.co/kaushikcoding14@gmail.com" method="POST" onsubmit="return validateForm()">
 <input type="hidden" name="_captcha" value="false">
 <input type="hidden" name="_template" value="table">
 <input type="hidden" name="_next" value="https://kaushik-portfolio.streamlit.app">
