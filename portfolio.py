@@ -6,7 +6,7 @@ import streamlit.components.v1 as components
 # --- PAGE CONFIGURATION ---
 st.set_page_config(
     page_title="Kaushik | Portfolio",
-    page_icon="🚀",
+    page_icon="✨",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -46,15 +46,15 @@ PROJECTS = [
     },
     {
         "title": "Student Performance Analyzer",
-        "description": "A comprehensive ML solution that predicts and analyzes student academic performance based on various factors, helping educators identify at-risk students.",
+        "description": "A comprehensive data analysis system developed to study student academic performance, uncover key influencing factors, and support early identification of academically at-risk students.",
         "url": "https://github.com/Kaushik142006/student-performance-analyzer",
         "icon": "📚",
-        "tags": ["Predictive Analytics", "Education", "Scikit-learn", "Data Analysis"]
+        "tags": ["Pandas", "Education", "EDA", "Data Analysis"]
     },
     {
         "title":"News Detector AI",
-        "description":"An NLP-based system that classifies news articles as real or fake using machine learning techniques.",
-        "url":"",
+        "description":"An NLP-based system designed to classify news articles as real or fake using machine learning techniques for accurate content verification and misinformation detection.",
+        "url":"https://github.com/Kaushik142006/News-Detector-AI",
         "icon":"📰",
         "tags":["NLP", "Text Classification", "ML"]
 
@@ -68,7 +68,7 @@ PROJECTS = [
     },
     {
         "title": "Travel Package Purchase Prediction",
-        "description": "A classification model that predicts customer likelihood to purchase travel packages based on demographics and behavior.",
+        "description": "A machine learning based classification system that analyzes customer demographic, behavioral, and historical interaction data to predict the likelihood of purchasing travel packages.The model helps in businesse and understands customer preferences.",
         "url": "https://github.com/Kaushik142006/Travel-package-Purchase-Prediction",
         "icon": "✈️",
         "tags": ["Classification", "Marketing", "Customer Behavior", "ML"]
@@ -76,15 +76,24 @@ PROJECTS = [
 ]
 
 SKILLS = [
-    {"name": "Python", "icon": "🐍"}, {"name": "Machine Learning", "icon": "🤖"},
-    {"name": "Data Science", "icon": "📊"}, {"name": "Deep Learning", "icon": "🧠"},
-    {"name": "NLP", "icon": "💬"}, {"name": "Feature Engineering", "icon": "🔧"},
-    {"name": "Pandas", "icon": "🐼"}, {"name": "NumPy", "icon": "🔢"},
-    {"name": "Scikit-learn", "icon": "⚙️"}, {"name": "Data Cleaning", "icon": "🧹"},
-    {"name": "Data Preprocessing", "icon": "🔄"}, {"name": "Data Analysis", "icon": "📈"},
-    {"name": "SQL", "icon": "🗄️"}, {"name": "Git", "icon": "📦"},
-    {"name": "Jupyter Notebook", "icon": "📓"}, {"name": "Problem Solving", "icon": "💡"},
+    {"name": "Python", "icon": "🐍"},
+    {"name": "Machine Learning", "icon": "🤖"},
+    {"name": "Deep Learning", "icon": "🧠"},
+    {"name": "Data Science", "icon": "📊"},
+    {"name": "Natural Language Processing (NLP)", "icon": "💬"},
+    {"name": "Scikit-learn", "icon": "⚙️"},
+    {"name": "NLTK", "icon": "🧰"},
+    {"name": "Gensim", "icon": "📚"},
+    {"name": "Pandas", "icon": "🐼"},
+    {"name": "NumPy", "icon": "🔢"},
+    {"name": "Matplotlib", "icon": "📈"},
+    {"name": "Feature Engineering", "icon": "🔧"},
+    {"name": "SQL", "icon": "🗄️"},
+    {"name": "Streamlit", "icon": "🖥️"},
+    {"name": "Git", "icon": "📦"},
+    {"name": "Jupyter Notebook", "icon": "📓"},
 ]
+
 
 # --- ASSET LOADING ---
 @st.cache_data
@@ -278,9 +287,10 @@ def load_css():
     }
     
     /* LinkedIn - Official Brand Color */
-    .linkedin-btn {
+    .linkedin-btn, .linkedin-btn:visited, .linkedin-btn:active, .linkedin-btn:focus {
         background: linear-gradient(135deg, #0077B5, #00A0DC);
-        color: white;
+        color: #ffffff !important;
+        text-decoration: none !important;
     }
     
     .linkedin-btn:hover {
@@ -288,6 +298,7 @@ def load_css():
         transform: translateY(-8px) scale(1.08);
         box-shadow: 0 12px 35px rgba(0, 119, 181, 0.5), 0 0 30px rgba(0, 160, 220, 0.3);
         filter: brightness(1.1);
+        color: #ffffff !important;
     }
     
     .linkedin-btn::before {
@@ -876,7 +887,7 @@ def experience_section():
         <div class="edu-card">
             <div style="font-size: 3rem; margin-bottom: 15px;">🎓</div>
             <h3 style="color: #ffffff; font-size: 1.5rem; background: linear-gradient(90deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Education</h3>
-            <p style="color: #a0a0c0; font-size: 1.1rem;">B.E. in Robotics & Artificial Intelligence</p>
+            <p style="color: #a0a0c0; font-size: 1.1rem;">B.E. in Artificial Intelligence & Robotics </p>
             <p style="color: #8888a8;">Dayananda Sagar College of Engineering</p>
             <div style="display: flex; align-items: center; gap: 10px; margin-top: 15px;">
                 <span style="color: #667eea;">📅</span><p style="color: #c0c0d8; margin: 0;">2024 - 2028</p>
