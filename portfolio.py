@@ -1001,6 +1001,7 @@ def contact_section():
     <div class="contact-section">
         <h3 class="contact-title">📬 Contact Me</h3>
         <p class="contact-subtitle">Have a question or want to work together? Send me a message!</p>
+        <p style="color: #ffcccc; font-size: 0.85rem; margin-top: 5px;">⚠️ Please do not share any sensitive or confidential information for safety purpose.</p>
     </div>
     """, unsafe_allow_html=True)
     
