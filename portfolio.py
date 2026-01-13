@@ -1016,31 +1016,40 @@ def contact_section():
         message = st.text_area("Message *", placeholder="Your message here...", height=150)
         
         submit_button = st.form_submit_button("🚀 Send Message", use_container_width=True)
-
         if submit_button:
             if not name or not email or not message:
                 st.error("⚠️ Please fill in all required fields (Name, Email, and Message).")
             else:
-                # Email sending logic using FormSubmit.co
-                form_url = "https://formsubmit.co/kaushiksathya2006@gmail.com"
-                
-                data = {
-                    "name": name,
-                    "email": email,
-                    "subject": subject if subject else "New Message from Portfolio",
-                    "message": message,
-                    "_captcha": "false",
-                    "_template": "table"
-                }
-                
                 try:
-                    response = requests.post(form_url, data=data)
-                    if response.status_code == 200:
+                    # EmailJS Configuration
+                    emailjs_url = "https://api.emailjs.com/api/v1.0/email/send"
+                    service_id = st.secrets["EMAILJS_SERVICE_ID"]
+                    template_id = st.secrets["EMAILJS_TEMPLATE_ID"]
+                    public_key = st.secrets["EMAILJS_PUBLIC_KEY"]
+
+                    # Prepare the data payload for EmailJS
+                    payload = {
+                        "service_id": service_id,
+                        "template_id": template_id,
+                        "user_id": public_key,
+                        "template_params": {
+                            "from_name": name,
+                            "from_email": email,
+                            "subject": subject if subject else "New Message from Portfolio",
+                            "message": message
+                        }
+                    }
+                    
+                    headers = {'Content-Type': 'application/json'}
+                    
+                    response = requests.post(emailjs_url, json=payload, headers=headers)
+                    
+                    if response.status_code in (200, 201):
                         st.success("✅ Message sent successfully! I'll get back to you soon. 🚀")
                     else:
-                        st.error("❌ There was an error sending your message. Please try again.")
+                        st.error(f"❌ Error sending message: {response.text}")
                 except Exception as e:
-                    st.error(f"❌ Error: {e}")
+                    st.error(f"❌ An error occurred: {e}")
 
 def footer_section():
     """Footer section with copyright information."""
@@ -1069,7 +1078,7 @@ if __name__ == "__main__":
     experience_section()
     projects_section()
     skills_section()
-    contact_section()  # NEW: Direct contact form instead of modal
+    contact_section()  
     footer_section()
     
     st.markdown('</div>', unsafe_allow_html=True)
