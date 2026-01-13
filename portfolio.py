@@ -1010,7 +1010,7 @@ def contact_section():
 <form action="https://formsubmit.co/kaushikcoding14@gmail.com" method="POST">
 <input type="hidden" name="_captcha" value="false">
 <input type="hidden" name="_template" value="table">
-<input type="hidden" name="_next" value="https://kaushik142006.github.io/portfolio/">
+<input type="hidden" name="_next" value="https://kaushik-portfolio.streamlit.app">
 <div style="display: flex; gap: 20px; flex-wrap: wrap;">
 <div style="flex: 1; min-width: 250px;">
 <label style="color: #e0e0f0; font-weight: 500; font-size: 0.95rem; margin-bottom: 8px; display: block;">Name</label>
