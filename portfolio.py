@@ -29,6 +29,8 @@ SOCIAL_LINKS = {
     "GitHub": "https://github.com/Kaushik142006",
 }
 
+RESUME_URL = "https://raw.githubusercontent.com/Kaushik142006/portfolio/main/kaushik_resume.pdf"
+
 PROJECTS = [
     {
         "title": "CargoGuard AI Risk System",
@@ -346,6 +348,39 @@ def load_css():
     }
     
     .github-btn:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    /* Resume - Cyan/Blue Code */
+    .resume-btn, .resume-btn:visited, .resume-btn:hover, .resume-btn:active, .resume-btn:focus {
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        color: #ffffff !important;
+        text-decoration: none !important;
+    }
+    
+    .resume-btn:hover {
+        background: linear-gradient(135deg, #00c6fb, #005bea);
+        transform: translateY(-8px) scale(1.08);
+        box-shadow: 0 12px 35px rgba(0, 198, 251, 0.5), 0 0 30px rgba(0, 91, 234, 0.3);
+        filter: brightness(1.1);
+        color: #ffffff !important;
+    }
+    
+    .resume-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+    
+    .resume-btn:hover::before {
         width: 300px;
         height: 300px;
     }
@@ -816,6 +851,9 @@ def header_section(lottie_url):
             </a>
             <a href="{SOCIAL_LINKS['GitHub']}" target="_blank" class="social-btn github-btn">
                 <span>💻 GitHub</span>
+            </a>
+            <a href="{RESUME_URL}" target="_blank" class="social-btn resume-btn">
+                <span>📄 Resume</span>
             </a>
         </div>
         """, unsafe_allow_html=True)
