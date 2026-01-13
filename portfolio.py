@@ -1005,51 +1005,38 @@ def contact_section():
     """, unsafe_allow_html=True)
     
     # Create the form
-    with st.form("contact_form", clear_on_submit=True):
-        col1, col2 = st.columns(2)
-        with col1:
-            name = st.text_input("Name *", placeholder="Your name")
-        with col2:
-            email = st.text_input("Email *", placeholder="your.email@example.com")
-        
-        subject = st.text_input("Subject", placeholder="What's this about?")
-        message = st.text_area("Message *", placeholder="Your message here...", height=150)
-        
-        submit_button = st.form_submit_button("🚀 Send Message", use_container_width=True)
-        if submit_button:
-            if not name or not email or not message:
-                st.error("⚠️ Please fill in all required fields (Name, Email, and Message).")
-            else:
-                try:
-                    # EmailJS Configuration
-                    emailjs_url = "https://api.emailjs.com/api/v1.0/email/send"
-                    service_id = st.secrets["EMAILJS_SERVICE_ID"]
-                    template_id = st.secrets["EMAILJS_TEMPLATE_ID"]
-                    public_key = st.secrets["EMAILJS_PUBLIC_KEY"]
-
-                    # Prepare the data payload for EmailJS
-                    payload = {
-                        "service_id": service_id,
-                        "template_id": template_id,
-                        "user_id": public_key,
-                        "template_params": {
-                            "from_name": name,
-                            "from_email": email,
-                            "subject": subject if subject else "New Message from Portfolio",
-                            "message": message
-                        }
-                    }
-                    
-                    headers = {'Content-Type': 'application/json'}
-                    
-                    response = requests.post(emailjs_url, json=payload, headers=headers)
-                    
-                    if response.status_code in (200, 201):
-                        st.success("✅ Message sent successfully! I'll get back to you soon. 🚀")
-                    else:
-                        st.error(f"❌ Error sending message: {response.text}")
-                except Exception as e:
-                    st.error(f"❌ An error occurred: {e}")
+    contact_form = """
+<form action="https://formsubmit.co/kaushikcoding14@gmail.com" method="POST">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_next" value="https://kaushik142006.github.io/portfolio/">
+<div style="display: flex; gap: 20px; flex-wrap: wrap;">
+<div style="flex: 1; min-width: 250px;">
+<label style="color: #e0e0f0; font-weight: 500; font-size: 0.95rem; margin-bottom: 8px; display: block;">Name</label>
+<input type="text" name="name" placeholder="Your name" required style="width: 100%; padding: 14px; border-radius: 12px; border: 2px solid rgba(102, 126, 234, 0.3); background: rgba(255, 255, 255, 0.05); color: white; outline: none; transition: all 0.3s; box-sizing: border-box;">
+</div>
+<div style="flex: 1; min-width: 250px;">
+<label style="color: #e0e0f0; font-weight: 500; font-size: 0.95rem; margin-bottom: 8px; display: block;">Email</label>
+<input type="email" name="email" placeholder="your.email@example.com" required style="width: 100%; padding: 14px; border-radius: 12px; border: 2px solid rgba(102, 126, 234, 0.3); background: rgba(255, 255, 255, 0.05); color: white; outline: none; transition: all 0.3s; box-sizing: border-box;">
+</div>
+</div>
+<div style="margin-top: 20px;">
+<label style="color: #e0e0f0; font-weight: 500; font-size: 0.95rem; margin-bottom: 8px; display: block;">Subject</label>
+<input type="text" name="subject" placeholder="What's this about?" style="width: 100%; padding: 14px; border-radius: 12px; border: 2px solid rgba(102, 126, 234, 0.3); background: rgba(255, 255, 255, 0.05); color: white; outline: none; transition: all 0.3s; box-sizing: border-box;">
+</div>
+<div style="margin-top: 20px;">
+<label style="color: #e0e0f0; font-weight: 500; font-size: 0.95rem; margin-bottom: 8px; display: block;">Message</label>
+<textarea name="message" placeholder="Your message here..." required style="width: 100%; padding: 14px; border-radius: 12px; border: 2px solid rgba(102, 126, 234, 0.3); background: rgba(255, 255, 255, 0.05); color: white; outline: none; height: 150px; transition: all 0.3s; box-sizing: border-box; font-family: inherit;"></textarea>
+</div>
+<div style="margin-top: 25px;">
+<button type="submit" style="width: 100%; padding: 14px 35px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.4s ease; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);">
+🚀 Send Message
+</button>
+</div>
+</form>
+    """
+    
+    st.markdown(contact_form, unsafe_allow_html=True)
 
 def footer_section():
     """Footer section with copyright information."""
